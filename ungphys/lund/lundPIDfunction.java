@@ -16,17 +16,15 @@ public class lundPIDfunction {
 			test_list.add(2212);
 			test_list.add(22);
 			test_list.add(22);
-
 			
 			FinalStateTopology test_topology = new FinalStateTopology(test_list);
-			
 			
 			 for (int i=1; i<=myReader.numEvents; i++) {
 				System.out.println("This is event number "+i);
 				LUNDEvent event = myReader.getNextEvent();
 				FinalStateTopology current_topology = event.getFinalStateTopology();
-				if (current_topology.equals (test_topology)) event.printActiveParticles();
-				event.printActiveParticles();
+				if (current_topology.isEqualTo(test_topology)) event.printActiveParticles();
+				//event.printActiveParticles();
 			}
 			
 	}

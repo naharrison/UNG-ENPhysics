@@ -17,20 +17,18 @@ public class FinalStateTopology implements Comparable<FinalStateTopology> {
 	
 	@Override
 	public int compareTo(FinalStateTopology compareState) {
-		
 		ArrayList<Integer> compare_list = compareState.getPidList();
-		
 		Collections.sort(compare_list);
 		
-		
 		ArrayList<Integer> final_pids_copy = new ArrayList<>(final_pids);
-		
 		Collections.sort(final_pids_copy);
 		
 		if (compare_list.equals (final_pids_copy)) return 0;
-		else return 1;
-		
+		else return -1;
 	}
-
+	
+	public boolean isEqualTo(FinalStateTopology compareState) {
+		return this.compareTo(compareState) == 0;
+	}
 	
 }
