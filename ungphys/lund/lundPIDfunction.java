@@ -7,26 +7,18 @@ public class lundPIDfunction {
 
 	public static void main(String[] args) throws IOException {
 		 
-			LUNDReader myReader = new LUNDReader("short_lund_file.dat", 9);
+			LUNDReader myReader = new LUNDReader("pythia_lund_11.0GeV_5k.dat", 5000);
 			
-			ArrayList <Integer> test_list = new ArrayList<>();
-			test_list.add(11);
-			test_list.add(211);
-			test_list.add(-211);
-			test_list.add(2212);
-			test_list.add(22);
-			test_list.add(22);
+			FinalStateTopologyHistogram myHistogram = new FinalStateTopologyHistogram();
 			
-			FinalStateTopology test_topology = new FinalStateTopology(test_list);
 			
 			 for (int i=1; i<=myReader.numEvents; i++) {
-				System.out.println("This is event number "+i);
+				
 				LUNDEvent event = myReader.getNextEvent();
 				FinalStateTopology current_topology = event.getFinalStateTopology();
-				if (current_topology.isEqualTo(test_topology)) event.printActiveParticles();
-				//event.printActiveParticles();
+				myHistogram.fill(current_topology);
 			}
-			
+			myHistogram.show();
 	}
 	
 }

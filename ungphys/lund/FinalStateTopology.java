@@ -31,4 +31,10 @@ public class FinalStateTopology implements Comparable<FinalStateTopology> {
 		return this.compareTo(compareState) == 0;
 	}
 	
+	public void show() {
+		for(Integer iparticle : final_pids) {
+			System.out.print(iparticle+" ");
+			
+		}
+	}
 }
