@@ -1,4 +1,4 @@
-package ungphys.lund;
+package edu.ung.phys.lund;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

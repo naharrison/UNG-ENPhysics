@@ -1,4 +1,4 @@
-package ungphys.lund;
+package edu.ung.phys.lund;
 
 public class LUNDParticle {
 	
