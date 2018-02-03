@@ -16,19 +16,24 @@ public class LUNDReader {
 		bufferedReader = new BufferedReader(myReader);
 		this.numEvents = numEvents;
 	}
+
 	public LUNDEvent getNextEvent() throws IOException {
 		String sCurrentLine = bufferedReader.readLine();
-		LUNDHeader header = new LUNDHeader(sCurrentLine); 
-		ArrayList<LUNDParticle> particles = new ArrayList<>();
-		
-		for (int p=0; p<header.getNumParticles(); p++) {
+		if(sCurrentLine != null) {
+			LUNDHeader header = new LUNDHeader(sCurrentLine); 
+			ArrayList<LUNDParticle> particles = new ArrayList<>();
 			
-			sCurrentLine = bufferedReader.readLine();
-			LUNDParticle particle = new LUNDParticle(sCurrentLine);
-			particles.add(particle);
-			
+			for(int p=0; p<header.getNumParticles(); p++) {
+				sCurrentLine = bufferedReader.readLine();
+				if(sCurrentLine != null) {
+					LUNDParticle particle = new LUNDParticle(sCurrentLine);
+					particles.add(particle);
+				}
+			}
+			LUNDEvent event = new LUNDEvent(header, particles);
+			return event;
 		}
-		LUNDEvent event = new LUNDEvent(header, particles);
-		return event;
+		return null;
 	}
+
 }

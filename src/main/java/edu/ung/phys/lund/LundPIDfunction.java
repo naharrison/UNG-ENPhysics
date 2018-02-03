@@ -3,7 +3,7 @@ package edu.ung.phys.lund;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class lundPIDfunction {
+public class LundPIDfunction {
 
 	public static void main(String[] args) throws IOException {
 		 

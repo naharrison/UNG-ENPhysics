@@ -26,6 +26,23 @@ public class FinalStateTopology implements Comparable<FinalStateTopology> {
 		if (compare_list.equals (final_pids_copy)) return 0;
 		else return -1;
 	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(this == object) return true;
+		if(!(object instanceof FinalStateTopology)) return false;
+
+		FinalStateTopology compareState = (FinalStateTopology) object;
+		if(compareTo(compareState) == 0) return true;
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// recommended from http://findbugs.sourceforge.net/bugDescriptions.html (HE_EQUALS_USE_HASHCODE)
+		assert false : "hashCode not designed";
+		return 42; // any arbitrary constant will do
+	}
 	
 	public boolean isEqualTo(FinalStateTopology compareState) {
 		return this.compareTo(compareState) == 0;
