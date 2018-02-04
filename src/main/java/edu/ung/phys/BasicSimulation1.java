@@ -13,7 +13,7 @@ import edu.ung.phys.basicSim.detector.TimeOfFlight;
 
 public class BasicSimulation1 {
 
-	public static ArrayList<Detector> detectors = new ArrayList<>();
+	public static final ArrayList<Detector> detectors = new ArrayList<>();
 	
 	public static void addDetectors() {
 		detectors.add(new DriftChamber(new Vector3D(0.25, 0.25, 0.25), new Vector3D(0.0, 0.0, 0.0), 1.0, 0.0));
