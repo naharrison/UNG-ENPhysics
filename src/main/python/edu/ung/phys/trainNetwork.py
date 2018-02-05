@@ -8,7 +8,7 @@ y = [0.] # target values
 clf = MLPClassifier(solver='adam', alpha=1e-5, random_state=1)
 
 
-training_data_file = open("data/data_train_5000.txt", 'r')
+training_data_file = open("test-data/pid_sim_200.txt", 'r')
 training_data_list = training_data_file.readlines()
 training_data_file.close()
 
@@ -23,7 +23,7 @@ print(clf.fit(X,y))
 
 X = [[0.,0.,0.,0.,0.]]
 y = []
-training_data_file = open("data/data_test_10.txt", 'r')
+training_data_file = open("test-data/pid_sim_10.txt", 'r')
 training_data_list = training_data_file.readlines()
 training_data_file.close()
 
@@ -36,11 +36,10 @@ for g in training_data_list:
         prediction = ','.join(map(str ,clf.predict(X)))
 ##        predictions = float(prediction.split(","))
         predictions = [int(e) if e.isdigit() else e for e in prediction.split(',')]
-        print(prediction[g])
 
 #print(clf.score(X,y))
-prediction = ','.join(map(str ,clf.predict(X)))
-print(prediction)
+#prediction = ','.join(map(str ,clf.predict(X)))
+#print(prediction)
 
-##print(clf.predict(X))
-#print(y)
+print(clf.predict(X))
+print(y)

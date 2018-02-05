@@ -7,6 +7,10 @@ jdk:
 before_install:
   - ls -lthra
   - java -version
+  - python --version
+  - which pip
+  - "pip install --user scipy" # includes numpy
+  - "pip install --user scikit-learn"
 
 install:
   - mvn install
@@ -17,6 +21,7 @@ install:
 
 script:
   - mvn cobertura:cobertura # for codecov
+  - "python src/main/python/edu/ung/phys/trainNetwork.py"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
