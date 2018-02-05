@@ -2,16 +2,14 @@
 dist: trusty # "Ubuntu Trusty" - has more up-to-date Java & Python
 dudo: required
 
-language: java
-
-jdk:
-  - oraclejdk8
+language: python
 
 python:
   - "2.7"
 
 before_install:
   - ls -lthra
+  - jdk_switcher use oraclejdk8
   - java -version
   - python --version
   - which pip
