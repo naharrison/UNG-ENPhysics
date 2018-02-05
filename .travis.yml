@@ -13,8 +13,8 @@ before_install:
   - java -version
   - python --version
   - which pip
-  - "pip install --user scipy" # includes numpy
-  - "pip install --user scikit-learn"
+  - "pip install scipy" # includes numpy. "pip install --user ..." is preferred, but not on Travis
+  - "pip install scikit-learn"
 
 install:
   - mvn install
