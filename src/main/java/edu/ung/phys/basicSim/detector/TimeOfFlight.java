@@ -18,6 +18,8 @@ public class TimeOfFlight implements Detector {
 
 	@Override
 	public DetectorResponse getResponse(DetectorParticle detectorParticle) {
+		if(detectorParticle.particle.particleType.getCharge() == 0) return new TimeOfFlightResponse(0.0);
+
 		double exactTof = detectorParticle.pathLength/detectorParticle.particle.velocity();
 		double tof = exactTof + tofResolution*r.nextGaussian() + tofShift;
 		return new TimeOfFlightResponse(tof);

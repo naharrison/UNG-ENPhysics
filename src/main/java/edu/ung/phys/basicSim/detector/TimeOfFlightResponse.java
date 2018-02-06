@@ -1,5 +1,8 @@
 package edu.ung.phys.basicSim.detector;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TimeOfFlightResponse implements DetectorResponse {
 	
 	public double tof;
@@ -16,6 +19,11 @@ public class TimeOfFlightResponse implements DetectorResponse {
 	@Override
 	public String getString() {
 		return Double.toString(tof);
+	}
+	
+	@Override
+	public ArrayList<Double> getValues() {
+		return (ArrayList<Double>) Arrays.asList(tof);
 	}
 
 }

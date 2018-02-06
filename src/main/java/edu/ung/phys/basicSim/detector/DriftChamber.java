@@ -23,11 +23,13 @@ public class DriftChamber implements Detector {
 
 	@Override
 	public DetectorResponse getResponse(DetectorParticle detectorParticle) {
+		if(detectorParticle.particle.particleType.getCharge() == 0) return new DriftChamberResponse(0.0, new Vector3D(0.0, 0.0, 0.0), 0.0);
+
 		double px = detectorParticle.particle.p.x + pResolution.x*r.nextGaussian() + pShift.x;
 		double py = detectorParticle.particle.p.y + pResolution.y*r.nextGaussian() + pShift.y;
 		double pz = detectorParticle.particle.p.z + pResolution.z*r.nextGaussian() + pShift.z;
 		double pathLength = detectorParticle.pathLength + pathLengthResolution*r.nextGaussian() + pathLengthShift;
-		return new DriftChamberResponse(new Vector3D(px, py, pz), pathLength);
+		return new DriftChamberResponse(detectorParticle.particle.particleType.getCharge(), new Vector3D(px, py, pz), pathLength);
 	}
 
 }
