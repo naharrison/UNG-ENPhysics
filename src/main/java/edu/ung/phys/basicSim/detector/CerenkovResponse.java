@@ -1,6 +1,6 @@
 package edu.ung.phys.basicSim.detector;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 public class CerenkovResponse implements DetectorResponse {
@@ -22,8 +22,8 @@ public class CerenkovResponse implements DetectorResponse {
 	}
 	
 	@Override
-	public ArrayList<Double> getValues() {
-		return (ArrayList<Double>) Arrays.asList(nphe);
+	public List<Double> getValues() {
+		return (List<Double>) Arrays.asList(nphe);
 	}
 
 }

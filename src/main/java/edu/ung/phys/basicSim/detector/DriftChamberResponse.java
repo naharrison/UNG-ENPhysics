@@ -1,6 +1,6 @@
 package edu.ung.phys.basicSim.detector;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 import edu.ung.phys.basicSim.Vector3D;
@@ -29,8 +29,8 @@ public class DriftChamberResponse implements DetectorResponse {
 	}
 	
 	@Override
-	public ArrayList<Double> getValues() {
-		return (ArrayList<Double>) Arrays.asList(chargeMeasured, pMeasured.x, pMeasured.y, pMeasured.z, pathLengthMeasured);
+	public List<Double> getValues() {
+		return (List<Double>) Arrays.asList(chargeMeasured, pMeasured.x, pMeasured.y, pMeasured.z, pathLengthMeasured);
 	}
 
 }
