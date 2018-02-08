@@ -1,7 +1,6 @@
 package edu.ung.phys.lund;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class LundPIDfunction {
 
