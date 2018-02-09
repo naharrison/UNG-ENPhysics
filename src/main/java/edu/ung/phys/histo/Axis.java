@@ -2,13 +2,13 @@ package edu.ung.phys.histo;
 
 public class Axis {
 	
-	public double min, max;
 	public int nDivisions;
+	public double min, max;
 	
-	public Axis(double min, double max, int nDivisions) {
+	public Axis(int nDivisions, double min, double max) {
+		this.nDivisions = nDivisions;
 		this.min = min;
 		this.max = max;
-		this.nDivisions = nDivisions;
 	}
 	
 	public double getBinWidth() {
