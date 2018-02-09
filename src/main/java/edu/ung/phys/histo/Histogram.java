@@ -49,10 +49,10 @@ public class Histogram {
 	 * index = w + Nw*(x-1) + Nw*Nx*(y-1) + Nw*Nx*Ny*(z-1)
 	 *   = (w-1) + Nw*(x-1) + Nw*Nx*(y-1) + Nw*Nx*Ny*(z-1) + 1
 	 */
-	public int getIndexFromIndices(ArrayList<Integer> indicies) {
+	public int getIndexFromIndices(ArrayList<Integer> indices) {
 		int index = 1;
 		for(int j = 0; j < nDimensions; j++) {
-			int thisTerm = indicies.get(j) - 1;
+			int thisTerm = indices.get(j) - 1;
 			for(int k = 0; k < j; k++) {
 				thisTerm = thisTerm * nBinsList.get(k);
 			}
@@ -61,8 +61,12 @@ public class Histogram {
 		return index;
 	}
 	
+	public int getIndexFromIndices(Integer...indices) {
+		return getIndexFromIndices(new ArrayList<Integer>(Arrays.asList(indices)));
+	}
+	
 	/**
-	 * Does the reverse of getIndexFromIndicies (see above)
+	 * Does the reverse of getIndexFromIndices (see above)
 	 * e.g.   iz = I/(Nw*Nx*Ny)  rounded up if any remainder
 	 *        iy = (I - Nw*Nx*Ny*(iz-1)) / (Nw*Nx)  rounded up if any remainder
 	 *        ix = (I - Nw*Nx*Ny*(iz-1) - Nw*Nx*(iy-1)) / (Nw)  rounded up if any remainder
@@ -110,16 +114,20 @@ public class Histogram {
 	
 	public void fill(ArrayList<Double> values) {
 		int index = getBinIndex(values);
-		if(index >= 0 && index < totalBins) counts.set(index, counts.get(index)+1);
+		if(index > 0 && index <= totalBins) counts.set(index-1, counts.get(index-1)+1);
 		else outOfRangeCount++;
 	}
 	
 	public void fill(Double...values) {
-		fill(values);
+		fill(new ArrayList<Double>(Arrays.asList(values)));
 	}
 	
 	public int getBinContent(ArrayList<Integer> indices) {
-		return counts.get(getIndexFromIndices(indices));
+		return counts.get(getIndexFromIndices(indices)-1);
+	}
+	
+	public int getBinContent(Integer...indices) {
+		return getBinContent(new ArrayList<Integer>(Arrays.asList(indices)));
 	}
 
 }
