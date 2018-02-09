@@ -14,6 +14,16 @@ public static void main(String[] args) {
 	System.out.println(hist.getBinIndices(5.1, 0.1, 44.1));
 	System.out.println(hist.getBinIndices(1.1, 0.1, 8.1));
 	System.out.println(hist.getBinIndices(24.9, 9.9, 11.9));
+	System.out.println("");
+
+	hist.fill(5.1, 0.1, 8.1);
+	hist.fill(5.1, 0.1, 8.1);
+	hist.fill(5.1, 0.1, 44.1);
+	hist.fill(1.1, 0.1, 8.1);
+	hist.fill(24.9, 9.9, 11.9);
 	
+	System.out.println(hist.getBinContent(hist.getBinIndices(5.1, 0.1, 8.1)));
+	System.out.println(hist.getBinContent(hist.getBinIndices(5.1, 0.1, 44.1)));
+	System.out.println(hist.getBinContent(hist.getBinIndices(5.1, 0.1, 44.1)));
 }
 }

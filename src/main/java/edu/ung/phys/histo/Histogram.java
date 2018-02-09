@@ -88,12 +88,8 @@ public class Histogram {
 		return indices;
 	}
 
-	public ArrayList<Integer> getBinIndices(double...values) {
-		ArrayList<Integer> result = new ArrayList<>();
-		for(int j = 0; j < values.length; j++) {
-			result.add(axes.get(j).getBin(values[j]));
-		}
-		return result;
+	public ArrayList<Integer> getBinIndices(Double...values) {
+		return getBinIndices(new ArrayList<Double>(Arrays.asList(values)));
 	}
 
 	public ArrayList<Integer> getBinIndices(ArrayList<Double> values) {
@@ -102,6 +98,28 @@ public class Histogram {
 			result.add(axes.get(j).getBin(values.get(j)));
 		}
 		return result;
+	}
+	
+	public int getBinIndex(ArrayList<Double> values) {
+		return getIndexFromIndices(getBinIndices(values));
+	}
+
+	public int getBinIndex(Double...values) {
+		return getIndexFromIndices(getBinIndices(values));
+	}
+	
+	public void fill(ArrayList<Double> values) {
+		int index = getBinIndex(values);
+		if(index >= 0 && index < totalBins) counts.set(index, counts.get(index)+1);
+		else outOfRangeCount++;
+	}
+	
+	public void fill(Double...values) {
+		fill(values);
+	}
+	
+	public int getBinContent(ArrayList<Integer> indices) {
+		return counts.get(getIndexFromIndices(indices));
 	}
 
 }
