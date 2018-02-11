@@ -31,6 +31,14 @@
 			<artifactId>spotbugs</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.processing/core -->
+		<dependency>
+			<groupId>org.processing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.2.3</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
