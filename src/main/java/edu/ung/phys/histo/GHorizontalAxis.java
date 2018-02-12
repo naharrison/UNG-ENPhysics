@@ -13,9 +13,9 @@ public class GHorizontalAxis {
 	}
 
 	public void display() {
-		int textSize = 20;
-		parent.stroke(0);
-		parent.strokeWeight((float) 2.75);
+		int textSize = 30;
+		parent.stroke(80, 120, 80);
+		parent.strokeWeight((float) 8.00);
 		parent.line(0, parent.height, parent.width, parent.height);
 		parent.textSize(textSize);
 		parent.fill(0);
