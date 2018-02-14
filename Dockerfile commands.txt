@@ -1,0 +1,4 @@
+Run Image command
+sudo docker run -it --rm --name tcanvas tcanvas:v1
+Create Image command
+sudo docker build -t tcanvas:v1
