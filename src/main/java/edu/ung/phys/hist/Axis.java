@@ -1,11 +1,11 @@
-package edu.ung.phys.histo;
+package edu.ung.phys.hist;
 
 /**
  * @author naharrison
  * a simple Axis class for histograms
- * bin numbers go from 1 to n
- * bin 0 is underflow bin
- * bin n+1 is overflow bin
+ * bin numbers go from 0 to n-1
+ * bin -1 is underflow bin
+ * bin n is overflow bin
  */
 public class Axis {
 	
@@ -23,10 +23,9 @@ public class Axis {
 	}
 	
 	public int getBin(double value) {
-		int bin = (int) Math.floor((value - min)/getBinWidth()) + 1;
-		if(bin < 1) bin = 0;
-		else if(bin > nDivisions) bin = nDivisions + 1;
-		return bin;
+		if(value < min) return -1;
+		else if(value >= max) return nDivisions;
+		else return (int) Math.floor((value - min)/getBinWidth());
 	}
 
 }
