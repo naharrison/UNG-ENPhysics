@@ -30,7 +30,7 @@ public class Histogram {
 		this.nTotalBins = totBins;
 		this.counts = new NDimensionalArray<Integer>(nBinsList);
 		for(int j = 0; j < this.counts.objects.size(); j++) {
-			this.counts.objects.set(j, 0);
+			this.counts.set(j, 0);
 		}
 	}
 
@@ -68,7 +68,7 @@ public class Histogram {
 			}
 		}
 		int index = counts.getIndexFromIndices(indices);
-		counts.objects.set(index, counts.objects.get(index) + 1);
+		counts.set(index, counts.get(index) + 1);
 	}
 	
 	

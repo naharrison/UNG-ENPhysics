@@ -91,4 +91,34 @@ public class NDimensionalArray<T> {
 	}
 	
 	
+	public T get(int index) {
+		return objects.get(index);
+	}
+	
+	
+	public T get(ArrayList<Integer> indices) {
+		return objects.get(getIndexFromIndices(indices));
+	}
+	
+	
+	public T get(Integer...indices) {
+		return get(new ArrayList<Integer>(Arrays.asList(indices)));
+	}
+	
+	
+	public void set(int index, T value) {
+		objects.set(index, value);
+	}
+	
+	
+	public void set(ArrayList<Integer> indices, T value) {
+		objects.set(getIndexFromIndices(indices), value);
+	}
+	
+	
+	public void set(T value, Integer...indices) {
+		set(new ArrayList<Integer>(Arrays.asList(indices)), value);
+	}
+	
+	
 }
