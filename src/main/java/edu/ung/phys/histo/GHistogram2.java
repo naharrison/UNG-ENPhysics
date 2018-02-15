@@ -28,11 +28,8 @@ public class GHistogram2 {
 		int n_Nminus2_bins = 1; // how many total bins in the (N-2)-D array
 		for(int j = 2; j < histogram.axes.size(); j++) n_Nminus2_bins = n_Nminus2_bins*histogram.axes.get(j).nDivisions;
 		
-		Object a = (Axis) new Axis(10, 0, 1);
-
-		for(int i = 0; i < n_Nminus2_bins; i++) {
-			
-		}
+		//Object a = (Axis) new Axis(10, 0, 1);
+		//for(int i = 0; i < n_Nminus2_bins; i++) { }
 	}
 
 }
