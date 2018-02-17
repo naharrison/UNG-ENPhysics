@@ -16,7 +16,9 @@ public class PlotTry extends PApplet {
 	GHorizontalAxis xAxis;
 	GVerticalAxis yAxis;
 	GHist2D ghist2d;
-	GHist1D ghist1d;
+	GHist1D ghist1d1;
+	GHist1D ghist1d2;
+	GHist1DCollection1D ghist1dcoll;
 
 
 	public void settings() {
@@ -39,7 +41,8 @@ public class PlotTry extends PApplet {
 		gridValues.set(35, 1, 3);
 		gridValues.set(3, 2, 3);
 		
-		ArrayList<Integer> h1dValues = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 2, 1, 0, 5));
+		ArrayList<Integer> h1dValues1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 2, 1, 0, 5));
+		ArrayList<Integer> h1dValues2 = new ArrayList<Integer>(Arrays.asList(5, 3, 1, 8, 5, 5));
 		
 		grid = new ColorGrid2D(this, gridValues);
 		
@@ -48,24 +51,33 @@ public class PlotTry extends PApplet {
 		
 		ghist2d = new GHist2D(this, grid, xAxis, yAxis);
 
-		ghist1d = new GHist1D(this, xAxis, h1dValues);
+		ghist1d1 = new GHist1D(this, xAxis, h1dValues1);
+		ghist1d2 = new GHist1D(this, xAxis, h1dValues2);
+		
+		ArrayList<GHist1D> hist1ds = new ArrayList<>();
+		hist1ds.add(ghist1d1);
+		hist1ds.add(ghist1d2);
+		
+		ghist1dcoll = new GHist1DCollection1D(this, hist1ds);
 	}
 	
 	
 	public void draw() {
 		background(220);
 
-		pushMatrix();
-		translate(50, 25);
-		scale((float) 0.4, (float) 0.4);
-		ghist1d.display();
-		popMatrix();
+		//pushMatrix();
+		//translate(50, 25);
+		//scale((float) 0.4, (float) 0.4);
+		//ghist1d1.display();
+		//popMatrix();
 
-		pushMatrix();
-		translate(440, 320);
-		scale((float) 0.4, (float) 0.4);
-		ghist2d.display();
-		popMatrix();
+		//pushMatrix();
+		//translate(440, 320);
+		//scale((float) 0.4, (float) 0.4);
+		//ghist2d.display();
+		//popMatrix();
+		
+		ghist1dcoll.display();
 	}
 
 }
