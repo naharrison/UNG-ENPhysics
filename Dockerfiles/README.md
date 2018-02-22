@@ -30,3 +30,4 @@ If Docker is misbehaving, try killing all running Docker related processes and s
 ps -ef | grep docker
 sudo kill jobID1 jobID2 ...
 ```
+Restarting your machine could also help

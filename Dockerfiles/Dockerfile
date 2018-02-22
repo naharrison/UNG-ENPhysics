@@ -2,8 +2,8 @@ FROM fedora:latest
 
 WORKDIR /mydocker
 
-RUN yum -y install which tcsh vim-enhanced
+RUN yum -y install which tcsh vim-enhanced root.x86_64 xorg-x11-apps.x86_64
 
-COPY fedora-repos/*.repo /etc/yum.repos.d/
+COPY root-test.C .
 
 ENTRYPOINT ["/bin/tcsh"]
