@@ -18,6 +18,7 @@ scp -r nathanh@ftp.jlab.org:/group/clas/builds/centos7/trunk/simulation/generato
 # also maybe try these versions of clasDIS:
 # /group/clas/builds/centos65/trunk/simulation/generators/clasDIS <-- confirmed works
 # /home/nathanh/clasDIS
+scp nathanh@ftp.jlab.org:"~/DISstuffOS62/ffread.in" .
 ```
 Add the following lines to Dockerfile just before the final `ENTRYPOINT` line:
 ```
