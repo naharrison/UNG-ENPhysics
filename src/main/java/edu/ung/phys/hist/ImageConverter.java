@@ -11,6 +11,9 @@ import java.util.Base64;
 
 import javax.imageio.ImageIO;
 
+import processing.core.PApplet;
+import processing.core.PImage;
+
 public class ImageConverter {
 	
 	public static String imgToBase64String(final RenderedImage img, final String formatName) {
@@ -23,12 +26,35 @@ public class ImageConverter {
 	    }
 	}
 
-	public static BufferedImage base64StringToImg(final String base64String) {
+
+	public static BufferedImage base64StringToBufferedImage(final String base64String) {
 	    try {
 	        return ImageIO.read(new ByteArrayInputStream(Base64.getDecoder().decode(base64String)));
 	    } catch (final IOException ioe) {
 	        throw new UncheckedIOException(ioe);
 	    }
 	}
+	
+	
+	public static PImage bufferedImageToPImage(final BufferedImage bimage) {
+		PImage pimg;
+		PApplet papp = new PApplet();
+		pimg = papp.createImage(bimage.getWidth(), bimage.getHeight(), PApplet.RGB);
+		pimg.loadPixels();
+		for(int x = 0; x < pimg.width; x++) {
+			for(int y = 0; y < pimg.height; y++) {
+				pimg.set(x, y, bimage.getRGB(x, y));
+			}
+		}
+		return pimg;
+	}
+	
+	
+	public static PImage base64StringToPImage(final String base64String) {
+		BufferedImage bimage = ImageConverter.base64StringToBufferedImage(base64String);
+		return ImageConverter.bufferedImageToPImage(bimage);
+	}
+
 
 }
+

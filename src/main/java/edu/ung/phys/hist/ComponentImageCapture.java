@@ -21,6 +21,7 @@ import java.io.File;
 /**
 Create a screenshot of a component.
 @author Andrew Thompson
+https://stackoverflow.com/questions/5853879/swing-obtain-image-of-jframe/5853992
 */
 public class ComponentImageCapture {
 
