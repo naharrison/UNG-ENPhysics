@@ -3,6 +3,11 @@ package edu.ung.phys.hist;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import edu.ung.phys.Axis;
+import edu.ung.phys.NDimensionalArray;
+import edu.ung.phys.graphics.ColorGrid2D;
+import edu.ung.phys.graphics.GHorizontalAxis;
+import edu.ung.phys.graphics.GVerticalAxis;
 import processing.core.PApplet;
 
 public class PlotTry extends PApplet {

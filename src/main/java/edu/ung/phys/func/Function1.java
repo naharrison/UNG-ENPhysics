@@ -13,8 +13,8 @@ import de.erichseifert.gral.plots.XYPlot;
 import de.erichseifert.gral.plots.lines.DefaultLineRenderer2D;
 import de.erichseifert.gral.plots.lines.LineRenderer;
 import de.erichseifert.gral.ui.InteractivePanel;
-import edu.ung.phys.hist.ComponentImageCapture;
-import edu.ung.phys.hist.ImageConverter;
+import edu.ung.phys.graphics.ComponentImageCapture;
+import edu.ung.phys.graphics.ImageConverter;
 
 public class Function1 {
 	

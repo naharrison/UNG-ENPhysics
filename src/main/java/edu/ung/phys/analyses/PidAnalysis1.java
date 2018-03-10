@@ -1,7 +1,7 @@
-package edu.ung.phys;
+package edu.ung.phys.analyses;
 
+import edu.ung.phys.Axis;
 import edu.ung.phys.basicSim.*;
-import edu.ung.phys.hist.Axis;
 import edu.ung.phys.hist.Histogram;
 
 import java.io.IOException;

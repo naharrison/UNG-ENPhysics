@@ -3,6 +3,9 @@ package edu.ung.phys.hist;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import edu.ung.phys.Axis;
+import edu.ung.phys.NDimensionalArray;
+
 /**
  * @author naharrison
  * Histogram class for an arbitrary number of dimensions, x1, x2, x3, ...

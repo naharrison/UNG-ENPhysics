@@ -1,4 +1,4 @@
-package edu.ung.phys.hist;
+package edu.ung.phys.graphics;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
