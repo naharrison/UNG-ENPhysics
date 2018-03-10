@@ -1,4 +1,4 @@
-package edu.ung.phys.func;
+package edu.ung.phys.plot;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -16,14 +16,14 @@ import de.erichseifert.gral.ui.InteractivePanel;
 import edu.ung.phys.graphics.ComponentImageCapture;
 import edu.ung.phys.graphics.ImageConverter;
 
-public class Function1 {
+public class Function1D {
 	
 	public Expression expr;
 	public double min, max;
 	public int nSteps;
 	
 
-	public Function1(String exprString, double min, double max) {
+	public Function1D(String exprString, double min, double max) {
 		expr = new ExpressionBuilder(exprString)
 				.variables("x")
 				.build();

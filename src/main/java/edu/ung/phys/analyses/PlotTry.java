@@ -1,4 +1,4 @@
-package edu.ung.phys.hist;
+package edu.ung.phys.analyses;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,12 +8,15 @@ import edu.ung.phys.NDimensionalArray;
 import edu.ung.phys.graphics.ColorGrid2D;
 import edu.ung.phys.graphics.GHorizontalAxis;
 import edu.ung.phys.graphics.GVerticalAxis;
+import edu.ung.phys.hist.GHist1D;
+import edu.ung.phys.hist.GHist1DCollection1D;
+import edu.ung.phys.hist.GHist2D;
 import processing.core.PApplet;
 
 public class PlotTry extends PApplet {
 
 	public static void main(String[] args) {
-		PApplet.main("edu.ung.phys.hist.PlotTry");
+		PApplet.main("edu.ung.phys.analyses.PlotTry");
 	}
 	
 	
