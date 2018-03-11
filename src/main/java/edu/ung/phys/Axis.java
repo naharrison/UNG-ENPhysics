@@ -45,7 +45,7 @@ public class Axis {
 		else if(value >= max) return nDivisions;
 		
 		int result = 0;
-		for(int k = 1; k < binLimits.size()-1; k++) {
+		for(int k = 1; k < binLimits.size(); k++) {
 			if(value < binLimits.get(k)) {
 				result = k - 1;
 				break;
