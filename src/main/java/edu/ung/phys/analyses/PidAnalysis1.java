@@ -2,7 +2,7 @@ package edu.ung.phys.analyses;
 
 import edu.ung.phys.Axis;
 import edu.ung.phys.basicSim.*;
-import edu.ung.phys.hist.Histogram;
+import edu.ung.phys.plot.Histogram;
 
 import java.io.IOException;
 import java.util.ArrayList;
