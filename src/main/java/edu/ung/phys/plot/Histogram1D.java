@@ -17,7 +17,7 @@ import de.erichseifert.gral.util.GraphicsUtils;
  * @author naharrison
  * Graphical 1-D histogram
  */
-public class Histogram1D {
+public class Histogram1D extends Plot {
 	
 	public ArrayList<Double> binLimits;
 	public ArrayList<Integer> counts;
@@ -29,6 +29,7 @@ public class Histogram1D {
 	}
 	
 
+	@Override
 	public JFrame getJFrame(int width, int height) {
 		JFrame result = new JFrame();
         result.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,23 +60,6 @@ public class Histogram1D {
         result.getContentPane().add(new InteractivePanel(plot));
         
 		return result;
-	}
-
-	
-	public static void main(String[] args) {
-		ArrayList<Double> lims = new ArrayList<>();
-		lims.add(0.0);
-		lims.add(0.5);
-		lims.add(1.0);
-		lims.add(1.5);
-		ArrayList<Integer> counts = new ArrayList<>();
-		counts.add(20);
-		counts.add(55);
-		counts.add(45);
-		
-		Histogram1D hh = new Histogram1D(lims, counts);
-		JFrame fr = hh.getJFrame(600, 400);
-		fr.setVisible(true);
 	}
 
 }
