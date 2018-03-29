@@ -4,3 +4,5 @@ target
 .project
 .settings/
 .DS_Store
+Dockerfiles/clas-software/spgen
+Dockerfiles/clas-software/clasDIS

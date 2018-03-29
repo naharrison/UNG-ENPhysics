@@ -3,6 +3,9 @@ package edu.ung.phys.hist;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import edu.ung.phys.Axis;
+import edu.ung.phys.graphics.GHorizontalAxis;
+import edu.ung.phys.graphics.GVerticalAxis;
 import processing.core.PApplet;
 
 public class GHist1D {

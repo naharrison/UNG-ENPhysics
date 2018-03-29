@@ -1,4 +1,4 @@
-package edu.ung.phys;
+package edu.ung.phys.analyses;
 
 import java.util.ArrayList;
 import java.util.Arrays;

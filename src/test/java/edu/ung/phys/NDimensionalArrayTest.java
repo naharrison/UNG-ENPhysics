@@ -1,4 +1,4 @@
-package edu.ung.phys.hist;
+package edu.ung.phys;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

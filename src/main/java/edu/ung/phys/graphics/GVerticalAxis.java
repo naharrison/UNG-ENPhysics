@@ -1,5 +1,6 @@
-package edu.ung.phys.histo;
+package edu.ung.phys.graphics;
 
+import edu.ung.phys.Axis;
 import processing.core.PApplet;
 
 public class GVerticalAxis {

@@ -1,6 +1,6 @@
 ---
 dist: trusty # "Ubuntu Trusty" - has more up-to-date Java & Python
-dudo: required
+sudo: required
 
 language: python
 

@@ -1,7 +1,10 @@
-package edu.ung.phys.hist;
+package edu.ung.phys.plot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import edu.ung.phys.Axis;
+import edu.ung.phys.NDimensionalArray;
 
 /**
  * @author naharrison

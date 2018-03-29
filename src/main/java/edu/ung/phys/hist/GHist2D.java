@@ -1,5 +1,8 @@
 package edu.ung.phys.hist;
 
+import edu.ung.phys.graphics.ColorGrid2D;
+import edu.ung.phys.graphics.GHorizontalAxis;
+import edu.ung.phys.graphics.GVerticalAxis;
 import processing.core.PApplet;
 
 public class GHist2D {

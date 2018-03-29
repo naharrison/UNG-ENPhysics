@@ -1,4 +1,4 @@
-package edu.ung.phys.histo;
+package edu.ung.phys.graphics;
 
 /**
  * https://stackoverflow.com/questions/1472514/convert-light-frequency-to-rgb

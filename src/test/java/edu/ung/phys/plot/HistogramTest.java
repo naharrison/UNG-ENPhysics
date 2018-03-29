@@ -1,6 +1,9 @@
-package edu.ung.phys.hist;
+package edu.ung.phys.plot;
 
 import org.junit.Test;
+
+import edu.ung.phys.Axis;
+
 import static org.junit.Assert.*;
 
 public class HistogramTest {

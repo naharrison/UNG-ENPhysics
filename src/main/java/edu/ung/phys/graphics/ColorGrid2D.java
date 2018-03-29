@@ -1,7 +1,8 @@
-package edu.ung.phys.hist;
+package edu.ung.phys.graphics;
 
 import java.util.Collections;
 
+import edu.ung.phys.NDimensionalArray;
 import processing.core.PApplet;
 
 public class ColorGrid2D {
