@@ -33,7 +33,7 @@ public class PidStatTracker {
   }
 
 
-  public void addAxis(ArrayList<Axis> axis) {
+  public void addAxis(Axis axis) {
     axes.add(axis);
     nVars++;
   }
@@ -103,7 +103,7 @@ public class PidStatTracker {
   public void printResults() {
     for(int n = 0; n < nParticleTypes; n++) {
       System.out.println("Efficiency Particle " + n + " = " + ((double) nHighCon_corr.get(n)/totalOccurances.get(n)));
-      System.out.println("Purity Particle " n + " = " + ((double) nHighCon_corr.get(n)/(nHighCon_corr.get(n)+nHighCon_incorr.get(n))));
+      System.out.println("Purity Particle " + n + " = " + ((double) nHighCon_corr.get(n)/(nHighCon_corr.get(n)+nHighCon_incorr.get(n))));
       System.out.println("");
     }
   }
