@@ -16,7 +16,7 @@ public class PidStatTracker {
   public int nVars;
   public double eBarScale;
   public ArrayList<Histogram> particleHistos = new ArrayList<>();
-  ArrayList<Integer> totalOccurances, nUnknown, nTies, nLowCon_corr, nLowCon_incorr, nHighCon_corr, nHighCon_incorr;
+  public ArrayList<Integer> totalOccurances, nUnknown, nTies, nLowCon_corr, nLowCon_incorr, nHighCon_corr, nHighCon_incorr;
 
 
   public PidStatTracker(int nParticleTypes, double eBarScale) {
@@ -40,14 +40,14 @@ public class PidStatTracker {
 
 
   public void train(String filename, int n) throws IOException {
-		PidTestDataReader reader = new PidTestDataReader(filename, n);
-		for(int j = 0; j < n; j++) {
+    PidTestDataReader reader = new PidTestDataReader(filename, n);
+    for(int j = 0; j < n; j++) {
       String[] values = reader.getNextEvent();
       int particleID = Integer.parseInt(values[0]);
       ArrayList<Double> vars = new ArrayList<>();
       for(int k = 1; k <= nVars; k++) vars.add(Double.parseDouble(values[k]));
       particleHistos.get(particleID).fill(vars);
-		}
+    }
   }
 
 
