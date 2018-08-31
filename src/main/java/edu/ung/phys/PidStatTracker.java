@@ -39,6 +39,11 @@ public class PidStatTracker {
   }
 
 
+  public void initializeHistos() {
+    for(int k = 0; k < nParticleTypes; k++) particleHistos.add(new Histogram(axes));
+  }
+
+
   public void train(String filename, int n) throws IOException {
     PidTestDataReader reader = new PidTestDataReader(filename, n);
     for(int j = 0; j < n; j++) {
