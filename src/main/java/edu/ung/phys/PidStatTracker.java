@@ -107,10 +107,20 @@ public class PidStatTracker {
 
   public void printResults() {
     for(int n = 0; n < nParticleTypes; n++) {
-      System.out.println("Efficiency Particle " + n + " = " + ((double) nHighCon_corr.get(n)/totalOccurances.get(n)));
-      System.out.println("Purity Particle " + n + " = " + ((double) nHighCon_corr.get(n)/(nHighCon_corr.get(n)+nHighCon_incorr.get(n))));
+      System.out.println("Efficiency Particle " + n + " = " + getEfficiency(n));
+      System.out.println("Purity Particle " + n + " = " + getPurity(n));
       System.out.println("");
     }
+  }
+
+
+  public double getEfficiency(int pIndex) {
+    return (double) nHighCon_corr.get(pIndex)/totalOccurances.get(pIndex);
+  }
+
+
+  public double getPurity(int pIndex) {
+    return (double) nHighCon_corr.get(pIndex)/(nHighCon_corr.get(pIndex)+nHighCon_incorr.get(pIndex));
   }
 
 
