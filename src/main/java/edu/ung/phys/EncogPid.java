@@ -99,6 +99,16 @@ public class EncogPid {
     for(MLDataPair pair : testingSet) {
       final MLData output = network.compute(pair.getInput());
       
+      System.out.print("Data: ");
+      for(int k = 0; k < nVars; k++) System.out.print(pair.getInput().getData(k) + ", ");
+      System.out.println("");
+      System.out.print("Network Result: ");
+      for(int k = 0; k < nParticleTypes; k++) System.out.print(output.getData(k) + ", ");
+      System.out.println("");
+      System.out.print("Ideal Result: ");
+      for(int k = 0; k < nParticleTypes; k++) System.out.print(pair.getIdeal().getData(k) + ", ");
+      System.out.println("");
+      System.out.println("");
     }
   }
 
@@ -111,10 +121,10 @@ public class EncogPid {
   public static void main(String[] args) throws IOException {
     int npart = 4;
     int nvar = 6;
-    ArrayList<Integer> hidden = new ArrayList<Integer>(0);
+    ArrayList<Integer> hidden = new ArrayList<>();
     hidden.add(7);
     System.out.println(hidden);
-    ArrayList<Integer> pids = new ArrayList<Integer>(0);
+    ArrayList<Integer> pids = new ArrayList<>();
     pids.add(211);
     pids.add(2212);
     pids.add(321);

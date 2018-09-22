@@ -49,5 +49,3 @@ public class EfficiencyPurityTracker {
 	  }
 	}
  }
-
-//copy over 'getPurity' and 'getEfficiency' from PidStatTracker so that this outputs something.
