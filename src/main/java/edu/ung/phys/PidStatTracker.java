@@ -17,12 +17,14 @@ public class PidStatTracker {
   public double eBarScale;
   public ArrayList<Histogram> particleHistos = new ArrayList<>();
   public ArrayList<Integer> totalOccurances, nUnknown, nTies, nLowCon_corr, nLowCon_incorr, nHighCon_corr, nHighCon_incorr;
+  public HashMap<Integer, Integer> indicesForParticles;
 
 
-  public PidStatTracker(int nParticleTypes, double eBarScale) {
+  public PidStatTracker(int nParticleTypes, double eBarScale, HashMap<Integer, Integer> indicesForParticles) {
     this.nParticleTypes = nParticleTypes;
     this.eBarScale = eBarScale;
     this.nVars = 0;
+    this.indicesForParticles = indicesForParticles;
     totalOccurances = new ArrayList<Integer>(Collections.nCopies(nParticleTypes, 0));
     nUnknown = new ArrayList<Integer>(Collections.nCopies(nParticleTypes, 0));
     nTies = new ArrayList<Integer>(Collections.nCopies(nParticleTypes, 0));
@@ -51,7 +53,7 @@ public class PidStatTracker {
       int particleID = Integer.parseInt(values[0]);
       ArrayList<Double> vars = new ArrayList<>();
       for(int k = 1; k <= nVars; k++) vars.add(Double.parseDouble(values[k]));
-      particleHistos.get(particleID).fill(vars);
+      particleHistos.get(indicesForParticles.get(particleID)).fill(vars);
     }
   }
 
@@ -67,7 +69,7 @@ public class PidStatTracker {
 
       ArrayList<Integer> binIndices = particleHistos.get(0).getBinIndices(vars);
 
-      totalOccurances.set(trueID, totalOccurances.get(trueID)+1);
+      totalOccurances.set(indicesForParticles.get(trueID), totalOccurances.get(indicesForParticles.get(trueID)) + 1);
       HashMap<Integer, Integer> countsForParticles = new HashMap<Integer, Integer>();
       for(int k = 0; k< nParticleTypes; k++) countsForParticles.put(k, particleHistos.get(k).getBinContent(binIndices));
 
@@ -95,12 +97,12 @@ public class PidStatTracker {
       double eBar1 = eBarScale*Math.sqrt(high1);
       double eBar2 = eBarScale*Math.sqrt(high2);
 
-      if(high1 == 0) nUnknown.set(trueID, nUnknown.get(trueID) + 1);
-      else if(high1 == high2) nTies.set(trueID, nTies.get(trueID) + 1);
-      else if(high1 - eBar1 < high2 + eBar2 && pid1 == trueID) nLowCon_corr.set(trueID, nLowCon_corr.get(trueID)+1);
-      else if(high1 - eBar1 < high2 + eBar2 && pid1 != trueID) nLowCon_incorr.set(trueID, nLowCon_incorr.get(trueID)+1);
-      else if(high1 - eBar1 > high2 + eBar2 && pid1 == trueID) nHighCon_corr.set(trueID,  nHighCon_corr.get(trueID)+1);
-      else if(high1 - eBar1 > high2 + eBar2 && pid1 != trueID) nHighCon_incorr.set(trueID, nHighCon_incorr.get(trueID)+1);
+      if(high1 == 0) nUnknown.set(indicesForParticles.get(trueID), nUnknown.get(indicesForParticles.get(trueID)) + 1);
+      else if(high1 == high2) nTies.set(indicesForParticles.get(trueID), nTies.get(indicesForParticles.get(trueID)) + 1);
+      else if(high1 - eBar1 < high2 + eBar2 && pid1 == trueID) nLowCon_corr.set(indicesForParticles.get(trueID), nLowCon_corr.get(indicesForParticles.get(trueID)) + 1);
+      else if(high1 - eBar1 < high2 + eBar2 && pid1 != trueID) nLowCon_incorr.set(indicesForParticles.get(trueID), nLowCon_incorr.get(indicesForParticles.get(trueID)) + 1);
+      else if(high1 - eBar1 > high2 + eBar2 && pid1 == trueID) nHighCon_corr.set(indicesForParticles.get(trueID),  nHighCon_corr.get(indicesForParticles.get(trueID)) + 1);
+      else if(high1 - eBar1 > high2 + eBar2 && pid1 != trueID) nHighCon_incorr.set(indicesForParticles.get(trueID), nHighCon_incorr.get(indicesForParticles.get(trueID)) + 1);
     }
   }
 
