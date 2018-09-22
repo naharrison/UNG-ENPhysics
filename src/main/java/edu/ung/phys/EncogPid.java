@@ -99,16 +99,6 @@ public class EncogPid {
     for(MLDataPair pair : testingSet) {
       final MLData output = network.compute(pair.getInput());
       
-      /*System.out.print("Data: ");
-      for(int k = 0; k < nVars; k++) System.out.print(pair.getInput().getData(k) + ", ");
-      System.out.println("");
-      System.out.print("Network Result: ");
-      for(int k = 0; k < nParticleTypes; k++) System.out.print(output.getData(k) + ", ");
-      System.out.println("");
-      System.out.print("Ideal Result: ");
-      for(int k = 0; k < nParticleTypes; k++) System.out.print(pair.getIdeal().getData(k) + ", ");
-      System.out.println("");
-      System.out.println("");*/
     }
   }
 
