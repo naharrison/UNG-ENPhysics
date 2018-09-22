@@ -114,8 +114,8 @@ public class NeurophPid {
     int npart = 4;
     int nvar = 6;
     NeurophPid npid = new NeurophPid(TransferFunctionType.SIGMOID, npart, nvar, 5);
-    npid.train(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-6537.txt", 65);
-    npid.test(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 500);
+    npid.train(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-6537.txt", 100);
+    npid.test(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 50);
 
     System.out.println("");
     System.out.printf("%-6s %-6s %-6s %-6s %-6s %-6s %n", "", "total", "rec", "rec", "", "");
