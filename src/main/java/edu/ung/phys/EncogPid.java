@@ -19,6 +19,7 @@ import org.encog.neural.networks.layers.BasicLayer;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
 
 import edu.ung.phys.basicSim.PidTestDataReader;
+import edu.ung.phys.EfficiencyPurityTracker;
 
 public class EncogPid {
 
@@ -77,9 +78,9 @@ public class EncogPid {
 
     final ResilientPropagation train = new ResilientPropagation(network, trainingSet);
     int epoch = 1;
-    while(train.getError() > 0.01 || epoch == 1) {
+    while(train.getError() > 0.025 || epoch == 1) {
       train.iteration();
-      System.out.println(epoch + " " + train.getError());
+      if(epoch %2000 == 0 || epoch < 101) System.out.println(epoch + " " + train.getError());
       epoch++;
     }
     train.finishTraining();
@@ -108,6 +109,7 @@ public class EncogPid {
 
     for(MLDataPair pair : testingSet) {
       final MLData output = network.compute(pair.getInput());
+      
       System.out.print("Data: ");
       for(int k = 0; k < nVars; k++) System.out.print(pair.getInput().getData(k) + ", ");
       System.out.println("");
@@ -128,11 +130,11 @@ public class EncogPid {
 
 
   public static void main(String[] args) throws IOException {
-    int npart = 3;
-    int nvar = 5;
-    EncogPid epid = new EncogPid(npart, nvar, 5, 5);
-    epid.train(System.getenv("DATASAMPLES")+"/pid_toymodel_5000.txt", 100);
-    epid.test(System.getenv("DATASAMPLES")+"/pid_toymodel_5000.txt", 25);
+    int npart = 4;
+    int nvar = 6;
+    EncogPid epid = new EncogPid(npart, nvar, 5);
+    epid.train(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-6537.txt", 6000);
+    epid.test(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 600);
 
     System.out.println("index -> pid map: " + epid.uniqueParticleIDs);
 
