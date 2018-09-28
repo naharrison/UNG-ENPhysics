@@ -12,6 +12,7 @@ public class EfficiencyPurityTracker {
   public int nSpecies;
   public ArrayList<Integer> ids, totalOccurances, nLowCon_corr, nLowCon_incorr, nHighCon_corr, nHighCon_incorr, nUnknown, nTies; 
 
+
   public EfficiencyPurityTracker(ArrayList<Integer> ids) {
     this.ids = ids;
     this.nSpecies = ids.size();
@@ -24,7 +25,8 @@ public class EfficiencyPurityTracker {
     this.nTies = new ArrayList<Integer>(Collections.nCopies(nSpecies, 0));
   }
 
-  public void trackActualPredicted(int actual, int prediction, ConfidenceLevel confidence){
+
+  public void trackActualPredicted(int actual, Integer prediction, ConfidenceLevel confidence){
     totalOccurances.set(ids.indexOf(actual), totalOccurances.get(ids.indexOf(actual)) + 1);
 
     if (confidence == ConfidenceLevel.UNKNOWN) {
@@ -46,18 +48,21 @@ public class EfficiencyPurityTracker {
       nHighCon_incorr.set(ids.indexOf(prediction), nHighCon_incorr.get(ids.indexOf(prediction)) + 1);
     }
     else {
-      System.out.println("Something is very wrong");
+      System.out.println("Problem with EfficiencyPurityTracker");
     }
   }
 
 
   public double getEfficiency(int id) {
+    if(totalOccurances.get(ids.indexOf(id)) == 0) return 0.0;
     return ((double) nHighCon_corr.get(ids.indexOf(id))) / ((double) totalOccurances.get(ids.indexOf(id)));
   }
 
 
   public double getPurity(int id) {
-    return ((double) nHighCon_corr.get(ids.indexOf(id))) / ((double) nHighCon_corr.get(ids.indexOf(id)) + (double) nHighCon_incorr.get(ids.indexOf(id)));
+    int denominator = nHighCon_corr.get(ids.indexOf(id)) + nHighCon_incorr.get(ids.indexOf(id));
+    if(denominator == 0) return 0.0;
+    return ((double) nHighCon_corr.get(ids.indexOf(id))) / ((double) denominator);
   }
 
  }
