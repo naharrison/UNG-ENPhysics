@@ -42,7 +42,7 @@ public class EncogPid {
     network.getStructure().finalizeStructure();
     network.reset();
     this.uniqueParticleIDs = uniqueParticleIDs;
-    tracker = new EfficiencyPurityTracker(nParticleTypes, uniqueParticleIDs);
+    tracker = new EfficiencyPurityTracker(uniqueParticleIDs);
   }
 
 
