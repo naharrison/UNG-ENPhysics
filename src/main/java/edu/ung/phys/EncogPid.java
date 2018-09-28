@@ -27,19 +27,11 @@ public class EncogPid {
   public int nParticleTypes, nVars;
   public ArrayList<Integer> nNeuronsInHiddenLayers;
   public ArrayList<Integer> uniqueParticleIDs;
-  public ArrayList<Integer> totalOccurances, nCorrect, nIncorrect;
+  public EfficiencyPurityTracker tracker;
   public MLDataSet trainingSet, testingSet;
 
 
-  public EncogPid(int nParticleTypes, int nVars, ArrayList<Integer> nNeuronsInHiddenLayers) {
-    init(nParticleTypes, nVars, nNeuronsInHiddenLayers);
-  }
-
-  public EncogPid(int nParticleTypes, int nVars, Integer... nNeuronsInHiddenLayers) {
-    init(nParticleTypes, nVars, new ArrayList<Integer>(Arrays.asList(nNeuronsInHiddenLayers)));
-  }
-
-  private void init(int nParticleTypes, int nVars, ArrayList<Integer> nNeuronsInHiddenLayers) {
+  public EncogPid(int nParticleTypes, int nVars, ArrayList<Integer> nNeuronsInHiddenLayers, ArrayList<Integer> uniqueParticleIDs) {
     this.nParticleTypes = nParticleTypes;
     this.nVars = nVars;
     this.nNeuronsInHiddenLayers = nNeuronsInHiddenLayers;
@@ -49,11 +41,8 @@ public class EncogPid {
     network.addLayer(new BasicLayer(new ActivationSigmoid(), false, nParticleTypes));
     network.getStructure().finalizeStructure();
     network.reset();
-
-    uniqueParticleIDs = new ArrayList<>();
-    totalOccurances = new ArrayList<Integer>(Collections.nCopies(nParticleTypes, 0));
-    nCorrect = new ArrayList<Integer>(Collections.nCopies(nParticleTypes, 0));
-    nIncorrect = new ArrayList<Integer>(Collections.nCopies(nParticleTypes, 0));
+    this.uniqueParticleIDs = uniqueParticleIDs;
+    tracker = new EfficiencyPurityTracker(uniqueParticleIDs);
   }
 
 
@@ -78,9 +67,9 @@ public class EncogPid {
 
     final ResilientPropagation train = new ResilientPropagation(network, trainingSet);
     int epoch = 1;
-    while(train.getError() > 0.025 || epoch == 1) {
+    while(train.getError() > 0.05 || epoch == 1) {
       train.iteration();
-      if(epoch %2000 == 0 || epoch < 101) System.out.println(epoch + " " + train.getError());
+      if(epoch %1000 == 0 || epoch < 101) System.out.println(epoch + " " + train.getError());
       epoch++;
     }
     train.finishTraining();
@@ -132,9 +121,17 @@ public class EncogPid {
   public static void main(String[] args) throws IOException {
     int npart = 4;
     int nvar = 6;
-    EncogPid epid = new EncogPid(npart, nvar, 5);
-    epid.train(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-6537.txt", 6000);
-    epid.test(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 600);
+    ArrayList<Integer> hidden = new ArrayList<>();
+    hidden.add(7);
+    System.out.println(hidden);
+    ArrayList<Integer> pids = new ArrayList<>();
+    pids.add(211);
+    pids.add(2212);
+    pids.add(321);
+    pids.add(-11);
+    EncogPid epid = new EncogPid(npart, nvar , hidden, pids);
+    epid.train(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-6537.txt", 6536);
+    epid.test(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 10000);
 
     System.out.println("index -> pid map: " + epid.uniqueParticleIDs);
 
@@ -142,3 +139,6 @@ public class EncogPid {
   }
 
 }
+
+//Put in HGH LOW etc confidence measure
+//make something to go through the output of the network and see highest and second highest number. Subtract and set a number of what is high/low/tie/etc.//
