@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class PidStatTrackerTest {
 
-	@Test
-	public void test1() {
+  @Test
+  public void test1() {
     ArrayList<Integer> pids = new ArrayList<>();
     pids.add(101);
     pids.add(102);

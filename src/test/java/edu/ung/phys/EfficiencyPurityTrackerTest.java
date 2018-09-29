@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class EfficiencyPurityTrackerTest {
 
-	@Test
-	public void test1() {
+  @Test
+  public void test1() {
     ArrayList<Integer> ids = new ArrayList<>();
     ids.add(101);
     ids.add(102);
@@ -39,7 +39,7 @@ public class EfficiencyPurityTrackerTest {
 
 
   @Test
-	public void test2() {
+  public void test2() {
     ArrayList<Integer> ids = new ArrayList<>();
     ids.add(101);
     ids.add(102);
