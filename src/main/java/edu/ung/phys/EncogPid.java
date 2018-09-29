@@ -30,7 +30,7 @@ public class EncogPid {
   public EfficiencyPurityTracker epTracker;
   public MLDataSet trainingSet;
 
-
+//TODO change Hidden layers, possibly activiation function (relu?), possibly backprop, 
 
   public EncogPid(int nParticleTypes, int nVars, ArrayList<Integer> nNeuronsInHiddenLayers, ArrayList<Integer> uniqueParticleIDs) {
     this.nParticleTypes = nParticleTypes;
@@ -79,11 +79,14 @@ public class EncogPid {
   public void train() {
     final ResilientPropagation train = new ResilientPropagation(network, trainingSet);
     int epoch = 1;
-    while((train.getError() > 0.05 || epoch == 1) && epoch < 10000) {
+    double lowError = 1;
+    while((train.getError() > 0.05 || epoch == 1) && epoch < 4000) {
       train.iteration();
       if(epoch %1000 == 0 || epoch < 101) System.out.println(epoch + " " + train.getError());
+      if(train.getError() < lowError) lowError = train.getError();
       epoch++;
     }
+    System.out.println(lowError);
     train.finishTraining();
   }
 
@@ -116,13 +119,26 @@ public class EncogPid {
 
 
   public void testWithEvent(int particleID, ArrayList<Double> vars) {
+    int trueID = uniqueParticleIDs.indexOf(particleID);
     ArrayList<Double> desiredOutput = new ArrayList<Double>(Collections.nCopies(nParticleTypes-1, 0.0));
-    desiredOutput.add(uniqueParticleIDs.indexOf(particleID), 1.0);
+    desiredOutput.add(trueID, 1.0);
+    ArrayList<Double> output = getNetworkOutput(vars);
 
-    System.out.println("Data: " + vars);
-    System.out.println("Network Result: " + getNetworkOutput(vars));
-    System.out.println("Ideal Result: " + desiredOutput);
-    System.out.println("");
+    double high1 = Double.MIN_VALUE;
+    double high2 = Double.MIN_VALUE;
+    Integer highIndex = null;
+
+    for(int k = 0; k < uniqueParticleIDs.size(); k++){
+      if (output.get(k) > high1){ 
+        high2 = high1;
+        high1 = output.get(k);
+        highIndex = k;
+      }
+      else if (output.get(k) > high2) high2 = output.get(k);
+  }
+      epTracker.trackActualPredicted(uniqueParticleIDs.get(trueID), uniqueParticleIDs.get(highIndex), ConfidenceLevel.HIGH);
+
+
   }
   public void testWithEvent(int particleID, Double... vars) {
     testWithEvent(particleID, new ArrayList<Double>(Arrays.asList(vars)));
@@ -148,12 +164,23 @@ public class EncogPid {
     pids.add(321);
     pids.add(-11);
     EncogPid epid = new EncogPid(npart, nvar , hidden, pids);
-    epid.addTrainingEventsFromFile(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-6537.txt", 6536);
+    epid.addTrainingEventsFromFile(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 6536);
     epid.train();
     epid.testOnFile(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-327307.txt", 10000);
 
-    System.out.println("index -> pid map: " + epid.uniqueParticleIDs);
+    System.out.println("index -> pid map: " + pids);
 
+    for(int pid : pids) {
+      System.out.println("Efficiency Particle " + pid + " = " + epid.epTracker.getEfficiency(pid));
+      System.out.println("Purity Particle " + pid + " = " + epid.epTracker.getPurity(pid));
+      System.out.println("");
+    }
+    for (int k = 0; k < npart; k++){
+      System.out.println(epid.epTracker.totalOccurances.get(k));
+      System.out.println(epid.epTracker.nHighCon_corr.get(k));
+      System.out.println(epid.epTracker.nHighCon_incorr.get(k));
+      System.out.println("");
+    }
     epid.shutdown();
   }
 
