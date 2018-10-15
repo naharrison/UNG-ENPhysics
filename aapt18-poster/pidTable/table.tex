@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+  \begin{tabular}{| p{19mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} |}
+    \hline
+        & $e^+$ Sample & $\pi^+$ Sample & $K^+$ Sample & P Sample & \phantom{HI} Rejected \\ \hline
+    No. of $e^+$ & 581 & 37 & 0 & 0 & 20 \\ \hline
+    No. of $\pi^+$ & 12 & 7622 & 65 & 160 & 77 \\ \hline
+    No. of $K^+$ & 1 & 73 & 982 & 55 & 25 \\ \hline
+    No. of P & 0 & 95 & 119 & 8063 & 83 \\ \hline
+  \end{tabular}
+
+
+\renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{| p{19mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} | >{\centering\arraybackslash}p{14mm} |}
+    \hline
+    Efficiency & {\large $\frac{581}{638}$} & {\large $\frac{7622}{7936}$} & {\large $\frac{982}{1136}$} & {\large $\frac{8063}{8360}$} \\
+    \hline
+    Purity & {\large $\frac{581}{594}$} & {\large $\frac{7622}{7827}$} & {\large $\frac{982}{1166}$} & {\large $\frac{8063}{8278}$} \\
+    \hline
+  \end{tabular}
+
+
+\end{document}
