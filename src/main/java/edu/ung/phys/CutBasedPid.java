@@ -60,7 +60,7 @@ public class CutBasedPid {
 
   public static void runAnalysis() throws IOException {
     int n = 649951;
-    PidTestDataReader reader = new PidTestDataReader("/home/mflor9255/data-samples/e1f/Pid-Data/pidout-649951.txt", n);
+    PidTestDataReader reader = new PidTestDataReader(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-649951.txt", n);
     for(int k = 0; k < n; k++) {
       String[] values = reader.getNextEvent();
       int trueID = Integer.parseInt(values[0]);
