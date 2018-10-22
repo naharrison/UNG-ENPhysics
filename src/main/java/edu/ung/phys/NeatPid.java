@@ -93,7 +93,7 @@ public class NeatPid {
     do {
       trainer.iteration();
       int epoch = trainer.getIteration();
-      if(epoch == 1 || epoch % 50 == 0) System.out.println("Epoch #" + epoch + " Error:" + trainer.getError()+ ", Species:" + pop.getSpecies().size());
+      if(epoch == 1 || epoch % 100 == 0) System.out.println("Epoch #" + epoch + " Error:" + trainer.getError()+ ", Species:" + pop.getSpecies().size());
     } while(trainer.getError() > err);
     System.out.println("Epoch #" + trainer.getIteration() + " Error:" + trainer.getError()+ ", Species:" + pop.getSpecies().size());
     network = (NEATNetwork) trainer.getCODEC().decode(trainer.getBestGenome());
@@ -135,20 +135,17 @@ public class NeatPid {
 
     double high = -1.0*Double.MAX_VALUE;
     Integer highIndex = null;
-
-    for(int k = 0; k < uniqueParticleIDs.size(); k++){
-      if (output.get(k) > high){ 
+    for(int k = 0; k < uniqueParticleIDs.size(); k++) {
+      if (output.get(k) > high) {
         high = output.get(k);
         highIndex = k;
       }
     }
-      epTracker.trackActualPredicted(uniqueParticleIDs.get(trueIDindex), uniqueParticleIDs.get(highIndex), ConfidenceLevel.HIGH);
+    epTracker.trackActualPredicted(uniqueParticleIDs.get(trueIDindex), uniqueParticleIDs.get(highIndex), ConfidenceLevel.HIGH);
   }
   public void testWithEvent(int particleID, Double... vars) {
     testWithEvent(particleID, new ArrayList<Double>(Arrays.asList(vars)));
   }
-
-
 
 
 
