@@ -22,24 +22,24 @@ public class CutBasedPid {
   public static void init() {
     pMin = 0.15;
     pMax = 5.0;
-    bMin = 0.4;
+    bMin = 0.55;
     bMax = 1.15;
 
-    posH = new F1D("posH", "1.075 + 0.0*x", pMin, 0.75);
+    posH = new F1D("posH", "1.06 + 0.0*x", pMin, 0.75);
     posH.setLineWidth(3);
-    posL = new F1D("posL", "0.91 + 0.333*x", pMin, 0.75);
+    posL = new F1D("posL", "0.905 + 0.225*x", pMin, 0.75);
     posL.setLineWidth(3);
-    piH  = new F1D("piH", "1.05 + 0.0*x", pMin + 0.1, pMax);
+    piH  = new F1D("piH", "1.04 + 0.0*x", pMin + 0.1, pMax);
     piH.setLineWidth(3);
-    piL  = new F1D("piL", "0.48*(sqrt(x*x/(0.14*0.14 + x*x)) + 0.98sqrt(x*x/(0.493*0.493 + x*x)))", pMin + 0.1, pMax);
+    piL  = new F1D("piL", "0.6*x/sqrt(0.14*0.14 + x*x) + 0.4*x/sqrt(0.494*0.494 + x*x)", pMin + 0.1, pMax);
     piL.setLineWidth(3);
-    kH = new F1D("kH", "0.6666*(sqrt(x*x/(0.494*0.494 + x*x))) +  0.3333*(sqrt(x*x/(0.14*0.14 + x*x)))", pMin + 0.1, pMax);
+    kH = new F1D("kH", "0.4*x/sqrt(0.14*0.14 + x*x) + 0.6*x/sqrt(0.494*0.494 + x*x)", pMin + 0.1, pMax);
     kH.setLineWidth(3);
-    kL = new F1D("kL", "0.6666*(sqrt(x*x/(0.494*0.494 + x*x))) + 0.3333*(sqrt(x*x/(0.938*0.938 + x*x)))", pMin + 0.1, pMax);
+    kL = new F1D("kL", "0.6*x/sqrt(0.494*0.494 + x*x) + 0.4*x/sqrt(0.938*0.938 + x*x)", pMin + 0.1, pMax);
     kL.setLineWidth(3);
-    prH = new F1D("prH", "0.35*(sqrt(x*x/(0.938*0.938 + x*x))) + 0.7*(sqrt(x*x/(0.494*0.494 + x*x)))", pMin + 0.1, pMax);
+    prH = new F1D("prH", "0.4*x/sqrt(0.494*0.494 + x*x) + 0.6*x/sqrt(0.938*0.938 + x*x)", pMin + 0.1, pMax);
     prH.setLineWidth(3);
-    prL = new F1D("prL", "1.5*(sqrt(x*x/(0.938*0.938 + x*x))) - 0.5*(sqrt(x*x/(0.494*0.494 + x*x)))", pMin + 0.1, pMax);
+    prL = new F1D("prL", "1.5*x/sqrt(0.938*0.938 + x*x) - 0.5*x/sqrt(0.494*0.494 + x*x)", pMin + 0.1, pMax);
     prL.setLineWidth(3);
 
     ArrayList<Integer> ids = new ArrayList<>();
@@ -49,18 +49,18 @@ public class CutBasedPid {
     ids.add(2212);
     epTracker = new EfficiencyPurityTracker(ids);
 
-    bvp = new H2F("bvp", "bvp", 200, 0.0, pMax, 200, bMin, bMax);
-    bvp_pos = new H2F("bvp_pos", "bvp_pos", 200, 0.0, pMax, 200, bMin, bMax);
-    bvp_pi = new H2F("bvp_pi", "bvp_pi", 200, 0.0, pMax, 200, bMin, bMax);
-    bvp_k = new H2F("bvp_k", "bvp_k", 200, 0.0, pMax, 200, bMin, bMax);
-    bvp_pr = new H2F("bvp_pr", "bvp_pr", 200, 0.0, pMax, 200, bMin, bMax);
+    bvp = new H2F("bvp", "bvp", 400, 0.0, pMax, 400, bMin, bMax);
+    bvp_pos = new H2F("bvp_pos", "bvp_pos", 400, 0.0, pMax, 400, bMin, bMax);
+    bvp_pi = new H2F("bvp_pi", "bvp_pi", 400, 0.0, pMax, 400, bMin, bMax);
+    bvp_k = new H2F("bvp_k", "bvp_k", 400, 0.0, pMax, 400, bMin, bMax);
+    bvp_pr = new H2F("bvp_pr", "bvp_pr", 400, 0.0, pMax, 400, bMin, bMax);
   }
 
 
 
   public static void runAnalysis() throws IOException {
-    int n = 649951;
-    PidTestDataReader reader = new PidTestDataReader(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-649951.txt", n);
+    int n = 5000000;
+    PidTestDataReader reader = new PidTestDataReader(System.getenv("DATASAMPLES")+"/e1f/Pid-Data/pidout-5M.txt", n);
     for(int k = 0; k < n; k++) {
       String[] values = reader.getNextEvent();
       int trueID = Integer.parseInt(values[0]);
